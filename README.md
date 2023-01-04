@@ -1,5 +1,5 @@
 # 学习笔记
-本仓库由W创建，维护。
+本仓库由LJTJ创建，LJTJ和WJY共同维护。
 该仓库主要用于记录学习所得，内容为一家之言，仅供参考！
 ***
 # 更新日志
@@ -16,3 +16,9 @@
 - RepVGG.pptx：论文汇报PPT。
 - repvgg\_A1\_deploy.onnx.png：推理阶段模型可视化图。
 - repvgg\_A1\_train.onnx.png：训练阶段模型可视化图。
+## 2022-12-30
+由W添加dl\_learnnote\dl\_learn\_note\ConvNeXt，内容包含ConvNeXt论文笔记、模型代码等，详情如下：
+- code
+  - convnext.py：网络模型。
+- ConvNeXt.pdf：论文笔记。
+- ConvNeXt.pptx：论文汇报PPT。
