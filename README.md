@@ -10,6 +10,7 @@ W创建和维护。
 - [2023-01-08](#2023-01-08)
 - [2023-01-13](#2023-01-13)
 - [2023-01-18](#2023-01-18)
+- [2023-01-21](#2023-01-21)
 
 ## 2022-12-21
 由W添加classification\RepVGG，内容包含RepVGG论文笔记、模型代码等，详情如下：
@@ -48,3 +49,24 @@ W创建和维护。
 由W添加tricks\TricksForImageClassification，主要介绍CNN在分类任务上的训练技巧，论文提及了多种方法具有参考价值，详情如下：
 - 论文笔记。
 - 论文汇报PPT。
+
+## 2023-01-21
+
+由W添加classification\轻量化网络\MobileNet系列\MobileNetV1，主要包含了MobileNetV1相关内容，详情如下：
+
+- MobileNetV1.pdf：论文笔记。
+- MobileNetV1.pptx：论文汇报PPT。
+- mobilenetv1.py：使用PyTorch构建的MobileNetV1网络模型。
+
+如何使用我们提供的代码，下面给出示例：
+
+```python 
+from mobilenet import *
+
+# 提供了三种不同宽度MobileNetV1模型
+net = MobileNetV1_100()
+
+# 可以自定义网络宽度，以0.25为例
+net = MobilNet(cfgs=cfgs, ratio=0.25, **kwargs)
+```
+
