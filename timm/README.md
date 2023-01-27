@@ -2,7 +2,9 @@
 
 **本篇内容主要为如何使用timm库构建我们自己的训练脚本**
 
-**写在前面，该内容主要翻译自该博客：https://towardsdatascience.com/getting-started-with-pytorch-image-models-timm-a-practitioners-guide-4e77b4bf9055#03bd，并且会加上一些细节上的东西，也算是自己的一些理解吧，诶，研一第一个学期过去了，我经常反思真的会用PyTorch了吗？知道该如何调参吗？用的东西是不是最新的？能自己搭建出网络模型和写出训练的脚本吗？很多时候我们总是在追一些论文，但是我们有花费功夫在论文总结和代码上吗？目前，我们的很多的工作都是基于前人的基础上进行的，用的很多模型都是SOTA，但是为什么放到我们自己的数据集上效果很差？诶，也希望自己可以把这个仓库维护下去，总希望可以给后来者一些便利。**
+**写在前面，该内容主要翻译自该博客：https://towardsdatascience.com/getting-started-with-pytorch-image-models-timm-a-practitioners-guide-4e77b4bf9055#03bd**
+
+**并且会加上一些细节上的东西，也算是自己的一些理解吧，诶，研一第一个学期过去了，我经常反思真的会用PyTorch了吗？知道该如何调参吗？用的东西是不是最新的？能自己搭建出网络模型和写出训练的脚本吗？很多时候我们总是在追一些论文，但是我们有花费功夫在论文总结和代码上吗？目前，我们的很多的工作都是基于前人的基础上进行的，用的很多模型都是SOTA，但是为什么放到我们自己的数据集上效果很差？诶，也希望自己可以把这个仓库维护下去，总希望可以给后来者一些便利。**
 
 ## 简单介绍一下：timm
 
@@ -21,25 +23,25 @@ https://huggingface.co/docs/timm/quickstart
 ## 本文目录：
 
 - [**Models**](#Models)
-  - [Customizing models](#Customizing models)
-  - [Feature Extraction](#Feature Extraction)
-  - [Exporting to different formats](#Exporting to different formats)
-- [**Data Augmentation**](#Data Augmentation)
+  - [Customizing models](#Customizing-models)
+  - [Feature Extraction](#Feature-Extraction)
+  - [Exporting to different formats](#Exporting-to-different-formats)
+- [**Data Augmentation**](#Data-Augmentation)
   - [RandAugment](#RandAugment)
-  - [CutMix and Mixup](#CutMix and Mixup)
+  - [CutMix and Mixup](#CutMix-and-Mixup)
 - [**Datasets**](#Datasets)
-  - [Loading datasets from TorchVision](#Loading datasets from TorchVision)
-  - [Loading datasets from TensorFlow Datasets](#Loading datasets from TensorFlow Datasets)
-  - [Loading datasets from local folders](#Loading datasets from local folders)
-  - [The ImageDataset Class](#The ImageDataset Class)
+  - [Loading datasets from TorchVision](#Loading-datasets-from-TorchVision)
+  - [Loading datasets from TensorFlow Datasets](#Loading-datasets-from-TensorFlow-Datasets)
+  - [Loading datasets from local folders](#Loading-datasets-from-local-folders)
+  - [The ImageDataset Class](#The-ImageDataset-Class)
 - [**Optimizers**](#Optimizers)
-  - [Usage Optimizer Example](#Usage Optimizer Example)
+  - [Usage-Optimizer-Example](#Usage-Optimizer-Example)
   - [Lookahead](#Lookahead)
-- [**Schedulers**](# Schedulers)
-  - [Usage Scheduler Example](#Usage Scheduler Example)
-  - [Adjusting learning rate schedules](#Adjusting learning rate schedules)
-- [**Exponential Moving Average Model**](#Exponential Moving Average Model)
-- [**Putting it all together!**](#Putting it all together!)
+- [**Schedulers**](#Schedulers)
+  - [Usage Scheduler Example](#Usage-Scheduler-Example)
+  - [Adjusting learning rate schedules](#Adjusting-learning-rate-schedules)
+- [**Exponential Moving Average Model**](#Exponential-Moving-Average-Model)
+- [**Putting it all together!**](#Putting-it-all-together!)
 
 ## 配置环境：
 
@@ -1484,13 +1486,13 @@ plot_lrs_for_timm_scheduler(lr_sched)
 ## Exponential Moving Average Model
 
 训练模型时，通过获取在整个训练运行中观察到的参数的移动平均值来设置模型权重的值可能是有益的，而不是使用上次增量更新后获得的参数。在实践中，这通常是通过维护 EMA 模型来完成的，该模型是我们正在训练的模型的副本。但是，我们不是在每个更新步骤后更新此模型的所有参数，而是使用现有参数值和更新值的线性组合来设置这些参数。这是使用以下公式完成的：
-$$
+```math
 updated\_EMA\_model\_weights=decay{\times}EMA\_model\_weights{+}(1.{-}decay){\times}updated\_model\_weights
-$$
+```
 其中衰减是我们设定的一个参数。例如，如果我们设置`decay=0.99`，我们有：
-$$
+```math
 updated\_EMA\_model\_weights=0.99{\times}EMA\_model\_weights{+}0.01{\times}updated\_model\_weights
-$$
+```
 我们可以看到，它保留了99%的现有状态，而只有1%的新状态！
 
 为了理解为什么这可能是有益的，让我们考虑这样的情况：我们的模型，在训练的早期阶段，某一批数据上表现的特别差。这可能会导致对我们的参数进行大量更新，过度补偿所获得的高损失，这对接下来的批次是不利的。通过只纳入最新参数的一小部分，剧烈的更新将被”平滑“，并对模型的权重产生较小的整体影响。
