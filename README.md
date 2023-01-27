@@ -11,6 +11,7 @@ W创建和维护。
 - [2023-01-13](#2023-01-13)
 - [2023-01-18](#2023-01-18)
 - [2023-01-21](#2023-01-21)
+- [2023-01-28](#2023-01-28)
 
 ## 2022-12-21
 由W添加classification\RepVGG，内容包含RepVGG论文笔记、模型代码等，详情如下：
@@ -70,3 +71,9 @@ net = MobileNetV1_100()
 net = MobilNet(cfgs=cfgs, ratio=0.25, **kwargs)
 ```
 
+## 2023-01-28
+
+由W添加timm\，主要介绍了timm库的使用：
+
+- README.md：《PyTorch 图像分类模型（timm）：实用指南》的Markdown文档。
+- PyTorch 图像分类模型（timm）：实用指南.pdf：由Markdown文档导出的PDF文件。
