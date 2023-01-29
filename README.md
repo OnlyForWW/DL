@@ -11,6 +11,8 @@ W创建和维护。
 - [2023-01-13](#2023-01-13)
 - [2023-01-18](#2023-01-18)
 - [2023-01-21](#2023-01-21)
+- [2023-01-28](#2023-01-28)
+- [2023-01-29](#2023-01-29)
 
 ## 2022-12-21
 由W添加classification\RepVGG，内容包含RepVGG论文笔记、模型代码等，详情如下：
@@ -69,4 +71,30 @@ net = MobileNetV1_100()
 # 可以自定义网络宽度，以0.25为例
 net = MobilNet(cfgs=cfgs, ratio=0.25, **kwargs)
 ```
+
+## 2023-01-28
+
+由W添加timm\，主要介绍了timm库的使用：
+
+- README.md：《PyTorch 图像分类模型（timm）：实用指南》的Markdown文档。
+- PyTorch 图像分类模型（timm）：实用指南.pdf：由Markdown文档导出的PDF文件。
+
+## 2023-01-29
+
+由W添加classification\轻量化网络\MobileNet系列\ShuffleNetV1，主要包含了ShuffleNetV1相关内容，详情如下：
+
+- ShuffleNetV1.pdf：论文笔记。
+- ShuffleNetV1.pptx：论文汇报PPT。
+- shufflenetv1.py：基于PyTorch构建的ShuffleNetV1模型。
+
+如何使用我们所提供的代码，下面给出示例：
+
+```python
+from shufflenetv1 import *
+
+# 我们提供了网络宽度为0.5、1.0、1.5和2.0，以及分组数为3和8
+net = ShuffleNet_050_g3()
+```
+
+注意：如果您想自定义网络宽度（例如0.75）或者增加新的分组（例如4），您可能需要修改代码，并在修改时注意各个卷积层的输入和输出通道数，这将导致某些通道数不符合缩放比例。
 
