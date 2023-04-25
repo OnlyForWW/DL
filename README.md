@@ -13,7 +13,7 @@ W创建和维护。
 - [2023-01-21](#2023-01-21)
 - [2023-01-28](#2023-01-28)
 - [2023-01-29](#2023-01-29)
-- [Long term updates](#Long term updates)
+- [Long term updates](#Long-term-updates)
 
 ## 2022-12-21
 由W添加classification\RepVGG，内容包含RepVGG论文笔记、模型代码等，详情如下：
@@ -99,7 +99,7 @@ net = ShuffleNet_050_g3()
 
 注意：如果您想自定义网络宽度（例如0.75）或者增加新的分组（例如4），您可能需要修改代码，并在修改时注意各个卷积层的输入和输出通道数，这将导致某些通道数不符合缩放比例。
 
-# Long term updates
+# Long-term-updates
 
 由W添加Vision Transformer，目前已包含如下内容：
 
