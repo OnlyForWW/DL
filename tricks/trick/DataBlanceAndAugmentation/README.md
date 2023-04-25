@@ -24,7 +24,7 @@
   C_i=\frac{N_{max}}{N_i}(Countdown)
   \tag{1}
 ```
-  
+
 - Complex upsampling：根据不同的比例常数C进行不同的数据增强。
 ```math
   \begin{cases}
@@ -35,13 +35,13 @@
   \end{cases}
   \tag{2}
 ```
-  
+
 - 平衡数据：
 ```math
   N'=N_i \times C_i
   \tag{3}
 ```
-  
+
 - 最终平衡后的数据集可以表示为：
 ```math
   D'=\{[M_0,M_1,M_2,\cdots,M_i][N'_0,N'_1,N'_2,\cdots,N'_i]^T\}
@@ -125,7 +125,7 @@
   | Origin | RandomGridShuffle |
   | --- | --- |
   | ![image](./示例图片/C.jpg) | ![image](./示例图片/C_RGS.jpg) |
-    
+  
 - **ColorJitter：** 随机色彩扰动。
   | Origin | ColorJitter |
   | --- | --- |
@@ -214,7 +214,7 @@ self.blance_operate = {
             5: A.Blur(always_apply=True)
         }
         self.augmentation_operate = {
-            0: A.CoarseDropout(max_holes=8, max_width=16, max_height=16,min_holes=8,
+            6: A.CoarseDropout(max_holes=8, max_width=16, max_height=16,min_holes=8,
                                min_width=8, min_height=8, fill_value=0, always_apply=True),
             1: A.RandomGridShuffle(grid=(4, 4), always_apply=True),
             2: A.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5,
